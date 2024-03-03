@@ -20,18 +20,22 @@ print("testing motor")
 
 # the motor is not strong enough to start at 0.4, but once
 # it's moving, it can keep going at that speed
-motor.throttle = 0.5
+motor.throttle = -0.5
 time.sleep(0.25)
-motor.throttle = 0.4
+motor.throttle = -0.75
+time.sleep(0.25)
+motor.throttle = -1
 
-# what to read switch pin until we are off the trigger
-time.sleep(1)
+for i in range(0, 1):
+    # wait to read switch pin until we are off the trigger
+    time.sleep(1)
 
-# Not sure why this doesn't work, but it returns after a few seconds
-#  without the switch being triggered
-# GPIO.wait_for_edge(SWITCH_PIN, GPIO.BOTH) # , SWITCH_TIMEOUT)
+    # Not sure why this doesn't work, but it returns after a few seconds
+    #  without the switch being triggered
+    # GPIO.wait_for_edge(SWITCH_PIN, GPIO.BOTH) # , SWITCH_TIMEOUT)
 
-while GPIO.input(SWITCH_PIN) == GPIO.LOW:
-    time.sleep(0.1)
+    while GPIO.input(SWITCH_PIN) == GPIO.LOW:
+        time.sleep(0.1)
+
 
 motor.throttle = 0
